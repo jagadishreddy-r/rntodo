@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Body from "./Components/Body";
 import Login from "./Components/Login";
 import TodoStore from "./Stores/TodoStore";
+import { Text, TouchableOpacity, AsyncStorage, Alert } from "react-native";
 import { Router, Scene } from "react-native-router-flux";
 
 const todoStore = new TodoStore();

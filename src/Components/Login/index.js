@@ -5,7 +5,8 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
-  Alert
+  Alert,
+  AsyncStorage
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 
@@ -16,9 +17,30 @@ export default class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      loading: false
+      loading: false,
+      islogin: false
     };
   }
+  componentWillMount() {
+    this._retrieveData();
+  }
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("isLogin1");
+      if (value === "true") {
+        Actions.home();
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+  _storeData = async value => {
+    try {
+      await AsyncStorage.setItem("isLogin1", value);
+    } catch (error) {
+      // Error saving data
+    }
+  };
 
   onLogin() {
     this.setState({ loading: true });
@@ -27,9 +49,11 @@ export default class Login extends Component {
         this.state.username === "jagadish" &&
         this.state.password === "jagadish"
       ) {
+        this._storeData("true");
         Actions.home();
         this.setState({ loading: false });
       } else {
+        this._storeData(false);
         this.setState({ loading: false });
         Alert.alert("invalid");
       }
