@@ -6,7 +6,8 @@ import {
   Image,
   TouchableOpacity,
   CheckBox,
-  Alert
+  Alert,
+  Vibration
 } from "react-native";
 import { observer } from "mobx-react";
 //import { CheckBox } from "react-native-elements";
@@ -18,8 +19,8 @@ class TodoItem extends Component {
   };
   SampleFunction = () => {
     Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
+      "Delete",
+      "you want to delete" + this.props.item.todoDesc,
       [
         {
           text: "Ask me later",
@@ -42,7 +43,9 @@ class TodoItem extends Component {
     this.props.item.toggleTaskStatus();
   };
   updateHandle = value => {
-    this.props.item.updateTodoDescription(value);
+    if (value.trim() != "") {
+      this.props.item.updateTodoDescription(value);
+    }
     this.setState({
       isLongPressed: false
     });
@@ -64,7 +67,10 @@ class TodoItem extends Component {
           )}
           {!this.state.isLongPressed && (
             <TouchableOpacity
-              onLongPress={() => this.setState({ isLongPressed: true })}
+              onLongPress={() => {
+                Vibration.vibrate(100);
+                this.setState({ isLongPressed: true });
+              }}
             >
               {this.props.item.taskStatus && (
                 <Text style={styles.text}>{this.props.item.todoDesc}</Text>

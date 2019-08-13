@@ -29,6 +29,7 @@ class AddTodo extends Component {
           onSubmitEditing={event => {
             this.props.functionToCall(event.nativeEvent.text);
           }}
+          autoFocus
         />
       </>
     );

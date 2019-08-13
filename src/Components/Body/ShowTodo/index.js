@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import AddTodo from "../AddTodo";
 import TodoItem from "./TodoItem";
 import { observer } from "mobx-react";
-import { FlatList, StyleSheet, ScrollView, Dimensions } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  Alert
+} from "react-native";
 @observer
 class ShowTodo extends Component {
   handle = value => {
-    this.props.todoStore.addTodo(value);
+    if (value.trim() != "") {
+      this.props.todoStore.addTodo(value);
+    }
     this.props.todoStore.changeshowTodos();
   };
 

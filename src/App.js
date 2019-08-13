@@ -1,27 +1,26 @@
 import React, { Component } from "react";
-import BottomBar from "./Components/BottomBar";
-import FloatingButton from "./Components/FloatingButton";
-import Heading from "./Components/Heading";
-import ShowTodo from "./Components/Body/ShowTodo";
+import Body from "./Components/Body";
+import Login from "./Components/Login";
 import TodoStore from "./Stores/TodoStore";
-import { View, StyleSheet } from "react-native";
-const todoStore = new TodoStore();
+import { Router, Scene } from "react-native-router-flux";
 
+const todoStore = new TodoStore();
 class App extends Component {
   render() {
     return (
-      <>
-        <Heading />
-        <ShowTodo todoStore={todoStore} />
-
-        <FloatingButton todoStore={todoStore} />
-
-        <BottomBar todoStore={todoStore} />
-      </>
+      <Router>
+        <Scene key="root" hideNavBar={true}>
+          <Scene key="login" component={Login} title="Login" intial />
+          <Scene
+            key="home"
+            component={Body}
+            todoStore={todoStore}
+            title="Home"
+          />
+        </Scene>
+      </Router>
     );
   }
 }
-const styles = StyleSheet.create({
-  bar: {}
-});
+
 export default App;
