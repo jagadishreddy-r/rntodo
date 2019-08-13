@@ -8,7 +8,7 @@ import {
   Alert,
   AsyncStorage
 } from "react-native";
-import { Actions } from "react-native-router-flux";
+import { Actions, ActionConst } from "react-native-router-flux";
 
 export default class Login extends Component {
   constructor(props) {
@@ -21,22 +21,10 @@ export default class Login extends Component {
       islogin: false
     };
   }
-  componentWillMount() {
-    this._retrieveData();
-  }
-  _retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("isLogin1");
-      if (value === "true") {
-        Actions.home();
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
+
   _storeData = async value => {
     try {
-      await AsyncStorage.setItem("isLogin1", value);
+      await AsyncStorage.setItem("isLogin", value);
     } catch (error) {
       // Error saving data
     }
@@ -50,7 +38,7 @@ export default class Login extends Component {
         this.state.password === "jagadish"
       ) {
         this._storeData("true");
-        Actions.home();
+        Actions.home({ type: ActionConst.REPLACE });
         this.setState({ loading: false });
       } else {
         this._storeData(false);

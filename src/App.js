@@ -4,6 +4,7 @@ import Login from "./Components/Login";
 import TodoStore from "./Stores/TodoStore";
 import { Text, TouchableOpacity, AsyncStorage, Alert } from "react-native";
 import { Router, Scene } from "react-native-router-flux";
+import Splash from "./Components/Splash";
 
 const todoStore = new TodoStore();
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
     return (
       <Router>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="login" component={Login} title="Login" intial />
+          <Scene key="splash" component={Splash} initial />
+          <Scene key="login" component={Login} title="Login" />
           <Scene
             key="home"
             component={Body}
