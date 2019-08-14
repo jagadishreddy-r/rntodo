@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import BottomBar from "../BottomBar";
-import FloatingButton from "../FloatingButton";
-import Heading from "../Heading";
+import BottomBar from "./BottomBar";
+import FloatingButton from "./FloatingButton";
+import Heading from "./Heading";
 import ShowTodo from "./ShowTodo";
 import { observer } from "mobx-react";
 import { AsyncStorage } from "react-native";
@@ -12,7 +12,7 @@ const hydrate = create({
   jsonify: true
 });
 @observer
-class Body extends Component {
+class TodoApp extends Component {
   constructor(props) {
     super(props);
     hydrate("TODOSTORE", props.todoStore).then(() => {
@@ -34,4 +34,4 @@ class Body extends Component {
   }
 }
 
-export default Body;
+export default TodoApp;

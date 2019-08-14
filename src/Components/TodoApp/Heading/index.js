@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Header, Text, Button } from "react-native-elements";
 import { AsyncStorage } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
-import i18n from "../I18n/index.js";
 
+import i18n from "../../../I18n/index";
 export default class Heading extends Component {
   async removeItemValue(key) {
     try {
