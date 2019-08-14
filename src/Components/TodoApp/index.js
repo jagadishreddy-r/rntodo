@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import BottomBar from "../BottomBar";
-import FloatingButton from "../FloatingButton";
-import Heading from "../Heading";
+import BottomBar from "./BottomBar";
+import FloatingButton from "./FloatingButton";
+import Heading from "./Heading";
 import ShowTodo from "./ShowTodo";
 import { observer } from "mobx-react";
 
 @observer
-class Body extends Component {
+class TodoApp extends Component {
   render() {
     const { todoStore } = this.props;
     return (
@@ -22,4 +22,4 @@ class Body extends Component {
   }
 }
 
-export default Body;
+export default TodoApp;

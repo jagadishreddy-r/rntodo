@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Body from "./Components/Body";
+import TodoApp from "./Components/TodoApp";
 import Login from "./Components/Login";
 import TodoStore from "./Stores/TodoStore";
 import { Text, TouchableOpacity, AsyncStorage, Alert } from "react-native";
@@ -16,7 +16,7 @@ class App extends Component {
           <Scene key="login" component={Login} title="Login" />
           <Scene
             key="home"
-            component={Body}
+            component={TodoApp}
             todoStore={todoStore}
             title="Home"
           />

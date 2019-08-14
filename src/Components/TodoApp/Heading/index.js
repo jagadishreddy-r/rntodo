@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Header, Text, Button } from "react-native-elements";
 import { AsyncStorage } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
-
+import i18n from "../../../I18n/index";
 export default class Heading extends Component {
   async removeItemValue(key) {
     try {
@@ -26,7 +26,7 @@ export default class Heading extends Component {
           }
           rightComponent={
             <Button
-              title={"Signout"}
+              title={i18n.t("signOut")}
               onPress={() => {
                 this.removeItemValue("isLogin");
               }}
