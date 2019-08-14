@@ -1,15 +1,20 @@
 import { observable, action, computed } from "mobx";
 import { filterValues } from "../../constant.js";
 import TodoModel from "../TodoModel";
+import { create, persist } from "mobx-persist";
+import { AsyncStorage } from "react-native";
+
 class TodoStore {
-  @observable todos;
+  @persist("list", TodoModel) @observable todos = [];
   @observable showTodos = false;
   @observable todoFilter = filterValues.all;
   constructor() {
     this.todos = [];
   }
   @action.bound addTodo(description) {
-    this.todos.push(new TodoModel(description));
+    const todoModel = new TodoModel();
+    todoModel.setConstructor(description);
+    this.todos.push(todoModel);
   }
   @action.bound deleteTodo(todoObject) {
     this.todos.remove(todoObject);
@@ -37,4 +42,5 @@ class TodoStore {
     return this.todos.filter(todo => todo.taskStatus === false).length;
   }
 }
+
 export default TodoStore;

@@ -1,19 +1,24 @@
 import { observable, action } from "mobx";
-
+import { persist } from "mobx-persist";
 class TodoModel {
-  id;
-  @observable todoDesc;
-  @observable taskStatus;
+  @persist id;
+  @persist @observable description;
+  @persist @observable status;
   constructor(description) {
     this.id = Date.now();
-    this.todoDesc = description;
-    this.taskStatus = false;
+    this.description = description;
+    this.status = false;
+  }
+  setConstructor(description) {
+    this.id = Date.now();
+    this.description = description;
+    this.status = false;
   }
   @action.bound toggleTaskStatus() {
-    this.taskStatus = !this.taskStatus;
+    this.status = !this.status;
   }
   @action.bound updateTodoDescription(description) {
-    this.todoDesc = description;
+    this.description = description;
   }
 }
 export default TodoModel;

@@ -20,7 +20,7 @@ class TodoItem extends Component {
   SampleFunction = () => {
     Alert.alert(
       "Delete",
-      "you want to delete" + this.props.item.todoDesc,
+      "you want to delete" + this.props.item.description,
       [
         {
           text: "Ask me later",
@@ -55,14 +55,14 @@ class TodoItem extends Component {
       <View style={styles.container}>
         <View style={styles.checktext}>
           <CheckBox
-            value={this.props.item.taskStatus}
+            value={this.props.item.status}
             onValueChange={() => this.props.item.toggleTaskStatus()}
           />
 
           {this.state.isLongPressed && (
             <AddTodo
               functionToCall={this.updateHandle}
-              defaultText={this.props.item.todoDesc}
+              defaultText={this.props.item.description}
             />
           )}
           {!this.state.isLongPressed && (
@@ -72,11 +72,11 @@ class TodoItem extends Component {
                 this.setState({ isLongPressed: true });
               }}
             >
-              {this.props.item.taskStatus && (
-                <Text style={styles.text}>{this.props.item.todoDesc}</Text>
+              {this.props.item.status && (
+                <Text style={styles.text}>{this.props.item.description}</Text>
               )}
-              {!this.props.item.taskStatus && (
-                <Text>{this.props.item.todoDesc}</Text>
+              {!this.props.item.status && (
+                <Text>{this.props.item.description}</Text>
               )}
             </TouchableOpacity>
           )}

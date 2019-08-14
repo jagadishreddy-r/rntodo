@@ -30,7 +30,7 @@ class Splash extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textstyle}>TODO</Text>
+        <Text style={styles.textstyle}>TODOAPP</Text>
       </View>
     );
   }

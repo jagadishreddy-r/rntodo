@@ -30,7 +30,11 @@ class ShowTodo extends Component {
             keyExtractor={item => item.todoDesc}
             extraData={this.props.todoStore.filteredTodos.slice()}
             renderItem={({ item }) => (
-              <TodoItem todoStore={this.props.todoStore} item={item} />
+              <TodoItem
+                key={item.id}
+                todoStore={this.props.todoStore}
+                item={item}
+              />
             )}
           />
         )}
