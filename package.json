@@ -19,7 +19,6 @@
     "react-native": "0.60.4",
     "react-native-elements": "^1.1.0",
     "react-native-i18n": "^2.0.15",
-    "react-native-locale-detector": "^1.0.1",
     "react-native-paper": "^2.16.0",
     "react-native-router-flux": "^4.0.6",
     "react-native-vector-icons": "^6.6.0",
