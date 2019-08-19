@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Text, View } from "react-native";
+
 export const Title = styled.Text`
   font-size: 50;
   font-weight: bold;
