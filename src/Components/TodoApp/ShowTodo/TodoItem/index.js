@@ -13,6 +13,7 @@ import { observer } from "mobx-react";
 //import { CheckBox } from "react-native-elements";
 import AddTodo from "../../AddTodo";
 import i18n from "../../../../I18n";
+import { DeleteIcon, CheckText, Div, Textstyle } from "./StyledComponents";
 @observer
 class TodoItem extends Component {
   state = {
@@ -53,8 +54,8 @@ class TodoItem extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.checktext}>
+      <Div>
+        <CheckText>
           <CheckBox
             value={this.props.item.status}
             onValueChange={() => this.props.item.toggleTaskStatus()}
@@ -74,20 +75,20 @@ class TodoItem extends Component {
               }}
             >
               {this.props.item.status && (
-                <Text style={styles.text}>{this.props.item.description}</Text>
+                <Textstyle>{this.props.item.description}</Textstyle>
               )}
               {!this.props.item.status && (
                 <Text>{this.props.item.description}</Text>
               )}
             </TouchableOpacity>
           )}
-        </View>
+        </CheckText>
         <View>
           <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction}>
-            <Image style={styles.deleteicon} source={require("./delete.png")} />
+            <DeleteIcon source={require("./delete.png")} />
           </TouchableOpacity>
         </View>
-      </View>
+      </Div>
     );
   }
 }
