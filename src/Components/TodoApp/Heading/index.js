@@ -4,6 +4,8 @@ import { AsyncStorage, Picker } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
 
 import i18n from "../../../I18n/index";
+import { observer } from "mobx-react";
+@observer
 export default class Heading extends Component {
   async removeItemValue(key) {
     try {

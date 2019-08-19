@@ -1,17 +1,21 @@
 import { observable, action, computed } from "mobx";
 import { filterValues } from "../../constant.js";
 import TodoModel from "../TodoModel";
-import { create, persist } from "mobx-persist";
-import { AsyncStorage } from "react-native";
-import { Alert } from "react-native";
+import i18n from "../../I18n";
+import { persist } from "mobx-persist";
 
 class TodoStore {
   @persist("list", TodoModel) @observable todos = [];
+  @persist @observable language;
   @observable showTodos = false;
   @observable todoFilter = filterValues.all;
   constructor() {
     this.todos = [];
   }
+  @action.bound changeLanguage(value) {
+    this.language = value;
+  }
+
   @action.bound addTodo(description) {
     const todoModel = new TodoModel();
     todoModel.setConstructor(description);
