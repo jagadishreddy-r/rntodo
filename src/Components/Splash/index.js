@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Text, View, StyleSheet, AsyncStorage } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
+import { Title, Div } from "./StyledComponent";
 class Splash extends Component {
   constructor(props) {
     super(props);
@@ -29,22 +30,11 @@ class Splash extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.textstyle}>TODOAPP</Text>
-      </View>
+      <Div>
+        <Title>TODOAPP</Title>
+      </Div>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  textstyle: {
-    fontSize: 50,
-    fontWeight: "bold",
-    color: "red"
-  }
-});
+
 export default Splash;

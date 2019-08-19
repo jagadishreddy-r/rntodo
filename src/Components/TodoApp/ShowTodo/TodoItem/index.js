@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { observer } from "mobx-react";
 //import { CheckBox } from "react-native-elements";
-import AddTodo from "../AddTodo";
-import i18n from "../../../I18n";
+import AddTodo from "../../AddTodo";
+import i18n from "../../../../I18n";
 @observer
 class TodoItem extends Component {
   state = {
