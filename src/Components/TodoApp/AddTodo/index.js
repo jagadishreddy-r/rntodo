@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { TextInput } from "react-native";
+import i18n from "../../../I18n";
 class AddTodo extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class AddTodo extends Component {
             borderColor: "gray",
             borderWidth: 0
           }}
-          placeholder="What need tobe Done?"
+          placeholder={i18n.t("What need tobe Done?")}
           onChangeText={text => this.setState({ text })}
           value={this.state.text}
           onSubmitEditing={event => {

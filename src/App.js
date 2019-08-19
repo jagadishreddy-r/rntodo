@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import TodoApp from "./Components/TodoApp";
 import Login from "./Components/Login";
 import TodoStore from "./Stores/TodoStore";
-import { Text, TouchableOpacity, AsyncStorage, Alert } from "react-native";
+
 import { Router, Scene } from "react-native-router-flux";
-import { create } from "mobx-persist";
 import Splash from "./Components/Splash";
 
 const todoStore = new TodoStore();

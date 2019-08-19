@@ -9,6 +9,7 @@ import {
   AsyncStorage
 } from "react-native";
 import { Actions, ActionConst } from "react-native-router-flux";
+import i18n from "../../I18n";
 
 export default class Login extends Component {
   constructor(props) {
@@ -59,19 +60,19 @@ export default class Login extends Component {
             <TextInput
               value={this.state.username}
               onChangeText={username => this.setState({ username })}
-              placeholder={"Username"}
+              placeholder={i18n.t("Username")}
               style={styles.input}
             />
 
             <TextInput
               value={this.state.password}
               onChangeText={password => this.setState({ password })}
-              placeholder={"Password"}
+              placeholder={i18n.t("Password")}
               secureTextEntry={true}
               style={styles.input}
             />
 
-            <Button title={"Login"} onPress={this.onLogin.bind(this)} />
+            <Button title={i18n.t("Login")} onPress={this.onLogin.bind(this)} />
           </>
         )}
       </View>

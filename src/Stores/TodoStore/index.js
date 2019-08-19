@@ -3,6 +3,7 @@ import { filterValues } from "../../constant.js";
 import TodoModel from "../TodoModel";
 import { create, persist } from "mobx-persist";
 import { AsyncStorage } from "react-native";
+import { Alert } from "react-native";
 
 class TodoStore {
   @persist("list", TodoModel) @observable todos = [];
@@ -28,18 +29,18 @@ class TodoStore {
   }
   @computed get filteredTodos() {
     if (this.todoFilter === filterValues.completed) {
-      return this.todos.filter(todo => todo.taskStatus === true);
+      return this.todos.filter(todo => todo.status === true);
     } else if (this.todoFilter === filterValues.active) {
-      return this.todos.filter(todo => todo.taskStatus === false);
+      return this.todos.filter(todo => todo.status === false);
     } else {
       return this.todos;
     }
   }
   @action.bound clearCompleted() {
-    this.todos = this.todos.filter(todo => todo.taskStatus === false);
+    this.todos = this.todos.filter(todo => todo.status === false);
   }
   @computed get undoneLeft() {
-    return this.todos.filter(todo => todo.taskStatus === false).length;
+    return this.todos.filter(todo => todo.status === false).length;
   }
 }
 

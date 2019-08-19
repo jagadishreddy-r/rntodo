@@ -1,3 +1,14 @@
 {
-  "signOut": "signOut"
+  "Heading": "TODOS",
+  "signOut": "Signout",
+  "All": "All",
+  "Completed": "Completed",
+  "Active": "Active",
+  "Username": "Username",
+  "Password": "Password",
+  "Login": "Login",
+  "What need tobe Done?": "What need tobe Done?",
+  "Cancel": "Cancel",
+  "Delete": "Delete",
+  "Ok": "Ok"
 }

@@ -19,6 +19,7 @@ class ShowTodo extends Component {
   };
 
   render() {
+    const todos = this.props.todoStore.filteredTodos;
     return (
       <ScrollView style={styles.todoslist}>
         {this.props.todoStore.showTodos && (
@@ -26,9 +27,9 @@ class ShowTodo extends Component {
         )}
         {!this.props.todoStore.showTodos && (
           <FlatList
-            data={this.props.todoStore.filteredTodos}
+            data={todos}
             keyExtractor={item => item.todoDesc}
-            extraData={this.props.todoStore.filteredTodos.slice()}
+            extraData={todos.slice()}
             renderItem={({ item }) => (
               <TodoItem
                 key={item.id}

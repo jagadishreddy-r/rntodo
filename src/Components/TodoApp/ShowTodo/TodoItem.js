@@ -12,6 +12,7 @@ import {
 import { observer } from "mobx-react";
 //import { CheckBox } from "react-native-elements";
 import AddTodo from "../AddTodo";
+import i18n from "../../../I18n";
 @observer
 class TodoItem extends Component {
   state = {
@@ -19,20 +20,20 @@ class TodoItem extends Component {
   };
   SampleFunction = () => {
     Alert.alert(
-      "Delete",
-      "you want to delete" + this.props.item.description,
+      i18n.t("Delete"),
+      i18n.t("Heading") + " " + this.props.item.description,
       [
         {
-          text: "Ask me later",
+          text: "",
           onPress: () => console.log("Ask me later pressed")
         },
         {
-          text: "Cancel",
+          text: i18n.t("Cancel"),
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
         {
-          text: "OK",
+          text: i18n.t("Ok"),
           onPress: () => this.props.todoStore.deleteTodo(this.props.item)
         }
       ],
