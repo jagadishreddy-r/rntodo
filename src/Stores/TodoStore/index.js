@@ -5,20 +5,34 @@ import i18n from "../../I18n";
 import { persist } from "mobx-persist";
 
 class TodoStore {
-  @persist("list", TodoModel) @observable todos = [];
+  @observable todos = [];
   @persist @observable language;
   @observable showTodos = false;
   @observable todoFilter = filterValues.all;
+  @observable isLoading = true;
   constructor() {
     this.todos = [];
   }
   @action.bound changeLanguage(value) {
     this.language = value;
   }
+  @action.bound getTodos() {
+    this.todos = [];
+    fetch("https://api.myjson.com/bins/nhomr")
+      .then(response => response.json())
+      .then(responseJson => {
+        responseJson.map(item => {
+          const todoModel = new TodoModel();
+          todoModel.setConstructor(item.description, item.completed);
+          this.todos.push(todoModel);
+          this.isLoading = false;
+        });
+      });
+  }
 
   @action.bound addTodo(description) {
     const todoModel = new TodoModel();
-    todoModel.setConstructor(description);
+    todoModel.setConstructor(description, false);
     this.todos.push(todoModel);
   }
   @action.bound deleteTodo(todoObject) {

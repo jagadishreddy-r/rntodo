@@ -7,10 +7,15 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
+  ActivityIndicator,
   Alert
 } from "react-native";
+import { Scroller } from "./StyledComponents";
 @observer
 class ShowTodo extends Component {
+  componentDidMount() {
+    this.props.todoStore.getTodos();
+  }
   handle = value => {
     if (value.trim() != "") {
       this.props.todoStore.addTodo(value);
@@ -20,34 +25,34 @@ class ShowTodo extends Component {
 
   render() {
     const todos = this.props.todoStore.filteredTodos;
+    const isLoading = this.props.todoStore.isLoading;
     return (
-      <ScrollView style={styles.todoslist}>
-        {this.props.todoStore.showTodos && (
-          <AddTodo defaultText="" functionToCall={this.handle} />
-        )}
-        {!this.props.todoStore.showTodos && (
-          <FlatList
-            data={todos}
-            keyExtractor={item => item.todoDesc}
-            extraData={todos.slice()}
-            renderItem={({ item }) => (
-              <TodoItem
-                key={item.id}
-                todoStore={this.props.todoStore}
-                item={item}
+      <>
+        {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
+        {!isLoading && (
+          <Scroller>
+            {this.props.todoStore.showTodos && (
+              <AddTodo defaultText="" functionToCall={this.handle} />
+            )}
+            {!this.props.todoStore.showTodos && (
+              <FlatList
+                data={todos}
+                keyExtractor={item => item.todoDesc}
+                extraData={todos.slice()}
+                renderItem={({ item }) => (
+                  <TodoItem
+                    key={item.id}
+                    todoStore={this.props.todoStore}
+                    item={item}
+                  />
+                )}
               />
             )}
-          />
+          </Scroller>
         )}
-      </ScrollView>
+      </>
     );
   }
 }
-const screenHeight = Math.round(Dimensions.get("window").height);
-const styles = StyleSheet.create({
-  todoslist: {
-    height: screenHeight - 195,
-    backgroundColor: "#fff"
-  }
-});
+
 export default ShowTodo;

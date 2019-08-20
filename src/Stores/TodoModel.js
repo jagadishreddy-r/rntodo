@@ -9,10 +9,10 @@ class TodoModel {
     this.description = description;
     this.status = false;
   }
-  setConstructor(description) {
+  setConstructor(description, status) {
     this.id = Date.now();
     this.description = description;
-    this.status = false;
+    this.status = status;
   }
   @action.bound toggleTaskStatus() {
     this.status = !this.status;

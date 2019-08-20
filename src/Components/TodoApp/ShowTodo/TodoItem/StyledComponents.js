@@ -14,6 +14,6 @@ export const CheckText = styled.View`
   align-items: center;
 `;
 export const Textstyle = styled.Text`
-  height: 30;
-  width: 30;
+  text-align: center;
+  text-decoration: line-through;
 `;
