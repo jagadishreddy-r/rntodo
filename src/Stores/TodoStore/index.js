@@ -17,17 +17,18 @@ class TodoStore {
     this.language = value;
   }
   @action.bound getTodos() {
-    this.todos = [];
-    fetch("https://api.myjson.com/bins/nhomr")
-      .then(response => response.json())
-      .then(responseJson => {
-        responseJson.map(item => {
-          const todoModel = new TodoModel();
-          todoModel.setConstructor(item.description, item.completed);
-          this.todos.push(todoModel);
-          this.isLoading = false;
+    if (this.todos.length === 0) {
+      fetch("https://api.myjson.com/bins/nhomr")
+        .then(response => response.json())
+        .then(responseJson => {
+          responseJson.map(item => {
+            const todoModel = new TodoModel();
+            todoModel.setConstructor(item.description, item.completed);
+            this.todos.push(todoModel);
+            this.isLoading = false;
+          });
         });
-      });
+    }
   }
 
   @action.bound addTodo(description) {
