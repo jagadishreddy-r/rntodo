@@ -8,7 +8,7 @@ import {
   ScrollView,
   Dimensions,
   ActivityIndicator,
-  Alert
+  Text
 } from "react-native";
 import { Scroller } from "./StyledComponents";
 @observer
@@ -29,7 +29,8 @@ class ShowTodo extends Component {
     return (
       <>
         {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
-        {!isLoading && (
+        {!isLoading && todos.length === 0 && <Text>no internet</Text>}
+        {!isLoading && todos.length > 0 && (
           <Scroller>
             {this.props.todoStore.showTodos && (
               <AddTodo defaultText="" functionToCall={this.handle} />

@@ -27,6 +27,9 @@ class TodoStore {
             this.todos.push(todoModel);
             this.isLoading = false;
           });
+        })
+        .catch(e => {
+          this.isLoading = false;
         });
     }
   }
